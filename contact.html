@@ -14,11 +14,28 @@
           alt="Adventure Escape SA Logo"
           class="logo"
         />
-        <ul>
+        <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="adventures.html">Adventures</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li class="has-dropdown">
+            <a href="adventures.html">Adventures</a>
+            <button
+              type="button"
+              class="dropdown-toggle"
+              aria-expanded="false"
+              aria-controls="adventures-menu"
+              aria-label="Show the Adventures menu"
+            >
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <ul class="dropdown-menu" id="adventures-menu">
+              <li><a href="adventures.html#packages">Adventure Packages</a></li>
+              <li><a href="adventures.html#activities">Individual Activities</a></li>
+              <li><a href="adventures.html#price-list">Price List</a></li>
+              <li><a href="adventures.html#calculator">Booking Calculator</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -26,31 +43,117 @@
     <section class="contact">
       <h1>Get in Touch</h1>
       <div class="contact-wrapper">
-        <form class="contact-form">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required />
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="https://formsubmit.co/hello@adventureescapesa.co.za"
+          method="POST"
+          novalidate
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="New Adventure Escape SA booking inquiry"
+          />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="text"
+            name="_honey"
+            tabindex="-1"
+            autocomplete="off"
+            style="display: none"
+          />
 
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <div
+            class="form-alert"
+            id="form-alert"
+            role="alert"
+            tabindex="-1"
+            hidden
+          ></div>
 
-          <label for="activity">Select Activity:</label>
-          <select id="activity" name="activity">
-            <option>Ultimate Adventure Day</option>
-            <option>Family Explorer</option>
-            <option>Mountain Adventure</option>
-            <option>Corporate Team Challenge</option>
-            <option>Ziplining</option>
-            <option>Kayaking</option>
-            <option>Rock Climbing</option>
-          </select>
+          <p class="form-note">Fields marked <span aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
 
-          <label for="date">Select Date:</label>
-          <input type="date" id="date" name="date" required />
+          <div class="form-field">
+            <label for="name">Name: <span aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="name"
+              maxlength="60"
+              required
+              aria-describedby="name-error"
+            />
+            <p class="field-error" id="name-error"></p>
+          </div>
 
-          <label for="message">Message:</label>
-          <textarea id="message" name="message"></textarea>
+          <div class="form-field">
+            <label for="email">Email: <span aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              maxlength="100"
+              required
+              aria-describedby="email-error"
+            />
+            <p class="field-error" id="email-error"></p>
+          </div>
 
-          <button type="submit" class="btn">Submit</button>
+          <div class="form-field">
+            <label for="activity">Select Activity: <span aria-hidden="true">*</span></label>
+            <select
+              id="activity"
+              name="activity"
+              required
+              aria-describedby="activity-error"
+            >
+              <option value="" disabled selected>Select an activity</option>
+              <optgroup label="Adventure packages (R1,500)">
+                <option>Ultimate Adventure Day</option>
+                <option>Family Explorer Package</option>
+                <option>Mountain Adventure Package</option>
+                <option>Corporate Team Challenge</option>
+              </optgroup>
+              <optgroup label="Individual activities (R750)">
+                <option>Ziplining Adventure</option>
+                <option>Kayaking Experience</option>
+                <option>Rock Climbing Session</option>
+              </optgroup>
+            </select>
+            <p class="field-error" id="activity-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="date">Select Date: <span aria-hidden="true">*</span></label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              required
+              aria-describedby="date-hint date-error"
+            />
+            <p class="field-hint" id="date-hint">We run adventures Monday to Saturday.</p>
+            <p class="field-error" id="date-error"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              maxlength="500"
+              aria-describedby="message-count message-error"
+            ></textarea>
+            <p class="field-hint" id="message-count">0 / 500 characters</p>
+            <p class="field-error" id="message-error"></p>
+          </div>
+
+          <button type="submit" class="btn" id="submit-button">
+            Send inquiry
+          </button>
         </form>
 
         <aside class="contact-panel">
@@ -68,5 +171,7 @@
     <footer>
       <p>&copy; 2026 Adventure Escape SA | Cape Town, Western Cape</p>
     </footer>
+    <script src="assets/js/nav.js" defer></script>
+    <script src="assets/js/form.js" defer></script>
   </body>
 </html>

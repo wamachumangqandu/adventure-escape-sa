@@ -14,17 +14,34 @@
           alt="Adventure Escape SA Logo"
           class="logo"
         />
-        <ul>
+        <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="adventures.html">Adventures</a></li>
+          <li class="has-dropdown">
+            <a href="adventures.html" aria-current="page">Adventures</a>
+            <button
+              type="button"
+              class="dropdown-toggle"
+              aria-expanded="false"
+              aria-controls="adventures-menu"
+              aria-label="Show the Adventures menu"
+            >
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <ul class="dropdown-menu" id="adventures-menu">
+              <li><a href="adventures.html#packages">Adventure Packages</a></li>
+              <li><a href="adventures.html#activities">Individual Activities</a></li>
+              <li><a href="adventures.html#price-list">Price List</a></li>
+              <li><a href="adventures.html#calculator">Booking Calculator</a></li>
+            </ul>
+          </li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <section class="adventures">
-      <h1>Our Adventure Packages</h1>
+      <h1 id="packages">Our Adventure Packages</h1>
       <div class="cards">
         <article class="card" data-price="1500">
           <img
@@ -119,7 +136,7 @@
         </article>
       </div>
 
-      <h1>Individual Activities</h1>
+      <h1 id="activities">Individual Activities</h1>
       <div class="cards">
         <article class="card" data-price="750">
           <img src="assets/images/ziplining forest.jpeg" alt="Ziplining" />
@@ -133,7 +150,7 @@
             <p><strong>Includes:</strong></p>
             <ul class="includes">
               <li>Safety briefing</li>
-              <li>Equipment hires</li>
+              <li>Equipment hire</li>
               <li>Professional instructors</li>
             </ul>
           </div>
@@ -179,10 +196,128 @@
       </div>
     </section>
 
-    <section class="booking-calculator" aria-labelledby="calculator-title">
+    <section
+      class="price-list"
+      id="price-list"
+      aria-labelledby="price-list-title"
+    >
+      <h1 id="price-list-title">Price List</h1>
+      <p class="section-intro">
+        Compare every adventure at a glance. All prices are in South African
+        rand (ZAR) per booking and exclude 15% VAT.
+      </p>
+
+      <div class="table-wrap" tabindex="0" aria-label="Adventure prices (scrollable)">
+        <table class="data-table">
+          <caption>Adventure prices</caption>
+          <thead>
+            <tr>
+              <th scope="col">Adventure</th>
+              <th scope="col">Type</th>
+              <th scope="col">Highlights</th>
+              <th scope="col" class="num">Fee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Ultimate Adventure Day</th>
+              <td>Package</td>
+              <td>Hiking, ziplining, kayaking and lunch</td>
+              <td class="num">R1,500</td>
+            </tr>
+            <tr>
+              <th scope="row">Family Explorer Package</th>
+              <td>Package</td>
+              <td>Nature walk, obstacle course and family games</td>
+              <td class="num">R1,500</td>
+            </tr>
+            <tr>
+              <th scope="row">Mountain Adventure Package</th>
+              <td>Package</td>
+              <td>Mountain hiking, viewpoints and rock scrambling</td>
+              <td class="num">R1,500</td>
+            </tr>
+            <tr>
+              <th scope="row">Corporate Team Challenge</th>
+              <td>Package</td>
+              <td>Obstacle course, orienteering and raft building</td>
+              <td class="num">R1,500</td>
+            </tr>
+            <tr>
+              <th scope="row">Ziplining Adventure</th>
+              <td>Activity</td>
+              <td>Forest zipline with instructors</td>
+              <td class="num">R750</td>
+            </tr>
+            <tr>
+              <th scope="row">Kayaking Experience</th>
+              <td>Activity</td>
+              <td>Guided paddle on rivers and lakes</td>
+              <td class="num">R750</td>
+            </tr>
+            <tr>
+              <th scope="row">Rock Climbing Session</th>
+              <td>Activity</td>
+              <td>Climbing on natural rock with a guide</td>
+              <td class="num">R750</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="table-heading">Multi-booking discounts</h2>
+      <div class="table-wrap" tabindex="0" aria-label="Discounts (scrollable)">
+        <table class="data-table">
+          <caption>
+            Discounts by number of bookings, with an example using R1,500
+            packages
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Number of bookings</th>
+              <th scope="col" class="num">Discount</th>
+              <th scope="col" class="num">Example subtotal</th>
+              <th scope="col" class="num">Example total (excl. VAT)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td class="num">None</td>
+              <td class="num">R1,500</td>
+              <td class="num">R1,500</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td class="num">5%</td>
+              <td class="num">R3,000</td>
+              <td class="num">R2,850</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td class="num">10%</td>
+              <td class="num">R4,500</td>
+              <td class="num">R4,050</td>
+            </tr>
+            <tr>
+              <th scope="row">4 or more</th>
+              <td class="num">15%</td>
+              <td class="num">R6,000</td>
+              <td class="num">R5,100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section
+      class="booking-calculator"
+      id="calculator"
+      aria-labelledby="calculator-title"
+    >
       <h1 id="calculator-title">Calculate Your Booking</h1>
       <p class="calculator-intro">
-        Choose quantities to see your total and any multi-booking discount.
+        Choose quantities to see your total, any multi-booking discount and VAT.
       </p>
       <div class="calculator-layout">
         <div>
@@ -208,10 +343,19 @@
               <dt>You save</dt>
               <dd id="booking-savings">R0</dd>
             </div>
+            <div>
+              <dt>Price after discount</dt>
+              <dd id="booking-net">R0</dd>
+            </div>
+            <div>
+              <dt>VAT (15%)</dt>
+              <dd id="booking-vat">R0</dd>
+            </div>
           </dl>
           <p class="booking-total">
-            <span>Total</span><strong id="booking-total">R0</strong>
+            <span>Total (incl. VAT)</span><strong id="booking-total">R0</strong>
           </p>
+          <p id="calculator-error" class="calculator-error" hidden></p>
           <p class="discount-rules">
             1 booking: no discount · 2: 5% · 3: 10% · 4 or more: 15%
           </p>
@@ -222,6 +366,7 @@
     <footer>
       <p>&copy; 2026 Adventure Escape SA | Cape Town, Western Cape</p>
     </footer>
+    <script src="assets/js/nav.js" defer></script>
     <script src="assets/js/calculator.js" defer></script>
   </body>
 </html>

@@ -79,6 +79,94 @@ nav a:hover {
   color: var(--orange);
 }
 
+nav a[aria-current="page"] {
+  color: var(--orange);
+}
+
+/* ---------- Drop-down navigation menu ---------- */
+.has-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-toggle:hover {
+  color: var(--orange);
+}
+
+.has-dropdown.open .dropdown-toggle {
+  transform: rotate(180deg);
+}
+
+nav .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  min-width: 230px;
+  padding: 8px;
+  gap: 2px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* Invisible bridge so the menu stays open while the mouse moves down to it */
+nav .dropdown-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+}
+
+.has-dropdown.open .dropdown-menu {
+  display: grid;
+}
+
+@media (hover: hover) {
+  .has-dropdown:not(.dismissed):hover .dropdown-menu {
+    display: grid;
+  }
+}
+
+nav .dropdown-menu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--forest-dark);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+nav .dropdown-menu a:hover,
+nav .dropdown-menu a:focus-visible {
+  background: #e8efe5;
+  color: var(--forest-dark);
+}
+
+/* Anchor targets on the Adventures page */
+[id] {
+  scroll-margin-top: 20px;
+}
+
 .hero {
   background:
     linear-gradient(rgba(22, 44, 25, 0.55), rgba(22, 44, 25, 0.55)),
@@ -274,6 +362,16 @@ section h2 {
   resize: vertical;
 }
 
+.contact-form input:focus-visible,
+.contact-form select:focus-visible,
+.contact-form textarea:focus-visible,
+.booking-option input:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
 .contact-details {
   list-style: none;
   padding: 0;
@@ -376,6 +474,183 @@ section h2 {
   margin: 14px 0 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* ---------- Error handling ---------- */
+:root {
+  --error: #b3261e;
+  --error-bg: #fdecea;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 6px;
+}
+
+.field-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.field-error {
+  margin: 0;
+  color: var(--error);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.field-error:not(:empty)::before {
+  content: "⚠ ";
+}
+
+.form-field.has-error input,
+.form-field.has-error select,
+.form-field.has-error textarea,
+.booking-option.has-error input {
+  border: 2px solid var(--error);
+  background: var(--error-bg);
+}
+
+.form-alert {
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--error-bg);
+  border: 1px solid #f2b8b5;
+  color: var(--error);
+}
+
+.form-alert p {
+  margin: 0;
+}
+
+.form-alert ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.form-alert a {
+  color: var(--error);
+  text-decoration: underline;
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
+.booking-option .field-error {
+  grid-column: 1 / -1;
+  margin-top: -4px;
+}
+
+.calculator-error {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--error-bg);
+  color: var(--error);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ---------- Tables ---------- */
+.section-intro {
+  margin-top: -8px;
+  color: var(--muted);
+}
+
+.table-heading {
+  margin-top: 36px;
+  color: var(--forest-dark);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  background: var(--white);
+}
+
+.data-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+}
+
+.data-table caption {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e3e6df;
+}
+
+.data-table thead th {
+  background: var(--forest-dark);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.data-table tbody th {
+  color: var(--forest-dark);
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: #f4f7f2;
+}
+
+.data-table tbody tr:last-child th,
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table .num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .data-table {
+    min-width: 0;
+    font-size: 0.82rem;
+  }
+
+  .data-table caption,
+  .data-table th,
+  .data-table td {
+    padding: 10px 8px;
+  }
+
+  .data-table .num {
+    white-space: normal;
+  }
 }
 
 footer {

@@ -14,10 +14,27 @@
           alt="Adventure Escape SA Logo"
           class="logo"
         />
-        <ul>
-          <li><a href="index.html">Home</a></li>
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="page">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="adventures.html">Adventures</a></li>
+          <li class="has-dropdown">
+            <a href="adventures.html">Adventures</a>
+            <button
+              type="button"
+              class="dropdown-toggle"
+              aria-expanded="false"
+              aria-controls="adventures-menu"
+              aria-label="Show the Adventures menu"
+            >
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <ul class="dropdown-menu" id="adventures-menu">
+              <li><a href="adventures.html#packages">Adventure Packages</a></li>
+              <li><a href="adventures.html#activities">Individual Activities</a></li>
+              <li><a href="adventures.html#price-list">Price List</a></li>
+              <li><a href="adventures.html#calculator">Booking Calculator</a></li>
+            </ul>
+          </li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -109,5 +126,6 @@
     <footer>
       <p>&copy; 2026 Adventure Escape SA | Cape Town, Western Cape</p>
     </footer>
+    <script src="assets/js/nav.js" defer></script>
   </body>
 </html>
