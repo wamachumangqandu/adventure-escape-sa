@@ -574,6 +574,124 @@ button:focus-visible {
   font-size: 0.95rem;
 }
 
+/* ---------- Booking ---------- */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-content .includes {
+  margin-bottom: 18px;
+}
+
+.card-book {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 10px 22px;
+}
+
+.booking-button {
+  width: 100%;
+  margin-top: 16px;
+  font: inherit;
+  font-weight: 700;
+}
+
+.booking-box {
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: #e8efe5;
+  border-left: 5px solid var(--orange);
+}
+
+.booking-box h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: var(--forest-dark);
+}
+
+.booking-items {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #bdcbb9;
+  display: grid;
+  gap: 4px;
+}
+
+.booking-items li,
+.booking-totals div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.booking-totals {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 0.95rem;
+}
+
+.booking-totals dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.booking-totals .booking-grand-total {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #bdcbb9;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+}
+
+.booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+}
+
+.booking-actions a,
+.link-button {
+  color: var(--forest-dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-success {
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: #e6f2e8;
+  border: 1px solid #9ccba3;
+  color: var(--forest-dark);
+}
+
+.form-success:focus {
+  outline: none;
+}
+
+.form-success p {
+  margin: 0;
+}
+
+.form-success p + p {
+  margin-top: 4px;
+}
+
 /* ---------- Tables ---------- */
 .section-intro {
   margin-top: -8px;

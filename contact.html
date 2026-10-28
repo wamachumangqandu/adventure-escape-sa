@@ -60,6 +60,8 @@
             value="New Adventure Escape SA booking inquiry"
           />
           <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" id="next-url" value="" />
           <input
             type="text"
             name="_honey"
@@ -75,6 +77,27 @@
             tabindex="-1"
             hidden
           ></div>
+
+          <div
+            class="form-success"
+            id="form-success"
+            role="status"
+            tabindex="-1"
+            hidden
+          ></div>
+
+          <div class="booking-box" id="booking-box" hidden>
+            <h2>Your booking</h2>
+            <ul class="booking-items" id="booking-items"></ul>
+            <dl class="booking-totals" id="booking-totals"></dl>
+            <p class="booking-actions">
+              <a href="adventures.html?edit=1#calculator">Change booking</a>
+              <button type="button" class="link-button" id="remove-booking">
+                Remove booking
+              </button>
+            </p>
+          </div>
+          <div id="booking-fields"></div>
 
           <p class="form-note">
             Fields marked <span aria-hidden="true">*</span
@@ -185,6 +208,7 @@
       <p>&copy; 2026 Adventure Escape SA | Cape Town, Western Cape</p>
     </footer>
     <script src="assets/js/nav.js" defer></script>
+    <script src="assets/js/booking.js" defer></script>
     <script src="assets/js/form.js" defer></script>
   </body>
 </html>

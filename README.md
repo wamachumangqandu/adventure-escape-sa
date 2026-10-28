@@ -26,6 +26,17 @@ The Adventures page has two tables:
 
 On phones the tables shrink to fit the screen.
 
+### Booking
+
+There are two ways to book, and both end on the Contact page:
+
+1. **Book Now** on any adventure card books one of that adventure.
+2. **Book these adventures** in the booking calculator books everything chosen there.
+
+The Contact page then shows a **Your booking** box with each adventure, the discount, VAT and total. The visitor adds their name, email and date and presses **Send inquiry**, and the full booking is emailed to the team. They can also **Change booking** (back to the calculator with their choices filled in) or **Remove booking**. After sending, the page shows a thank-you message. The Contact form also works on its own, without a booking.
+
+The booking is passed between pages with the browser's sessionStorage (`assets/js/calculator.js` saves it and `assets/js/booking.js` shows it on the Contact page).
+
 ### Booking calculator
 
 On the Adventures page, enter a quantity for each package or activity to see the booking count, subtotal, discount, savings, price after discount, VAT and total. Discounts are based on the total number of bookings: one booking gets no discount, two get 5%, three get 10%, and four or more get 15%. South African VAT of 15% is then added to the discounted price. Prices are shown in South African rand (ZAR) and exclude VAT.
@@ -84,6 +95,7 @@ adventure-escape-sa/
     ├── js/
     │   ├── nav.js
     │   ├── calculator.js
+    │   ├── booking.js
     │   └── form.js
     └── images/
 ```

@@ -1,6 +1,8 @@
 // Booking calculator for the Adventures page.
 // Builds one quantity input per adventure card, works out the discount,
 // and shows a clear error message when a quantity is not valid.
+// "Book Now" (on each card) and "Book these adventures" (in the calculator)
+// save the booking and open the Contact form, where it is sent by email.
 
 const MAX_PER_ADVENTURE = 20;
 const VAT_RATE = 0.15; // South African VAT
@@ -18,6 +20,26 @@ const formatCurrency = (amount) =>
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   }).format(amount);
+
+// The booking is passed to the Contact page in sessionStorage.
+const BOOKING_KEY = "aesBooking";
+
+const saveBooking = (items) => {
+  try {
+    sessionStorage.setItem(BOOKING_KEY, JSON.stringify({ items }));
+  } catch {
+    // Storage can be blocked (private mode). The Contact page then falls
+    // back to the activity named in the link.
+  }
+};
+
+const loadBooking = () => {
+  try {
+    return JSON.parse(sessionStorage.getItem(BOOKING_KEY)) || null;
+  } catch {
+    return null;
+  }
+};
 
 const bookingInputs = [...adventureCards].map((card, index) => {
   const name = card.querySelector("h2").textContent.trim();
@@ -50,6 +72,17 @@ const bookingInputs = [...adventureCards].map((card, index) => {
 
   label.append(details, input, error);
   optionsContainer.append(label);
+
+  // "Book Now" button on the card: books one of this adventure.
+  const bookLink = document.createElement("a");
+  bookLink.className = "btn card-book";
+  bookLink.href = `contact.html?activity=${encodeURIComponent(name)}`;
+  bookLink.textContent = "Book Now";
+  bookLink.setAttribute("aria-label", `Book ${name}`);
+  bookLink.addEventListener("click", () => {
+    saveBooking([{ name, price, qty: 1 }]);
+  });
+  card.querySelector(".card-content").append(bookLink);
 
   return { input, error, price, name };
 });
@@ -156,4 +189,50 @@ for (const { input } of bookingInputs) {
   });
 }
 
+// Coming back from "Change booking" on the Contact page: refill the boxes.
+if (new URLSearchParams(window.location.search).get("edit") === "1") {
+  const saved = loadBooking();
+  if (saved && Array.isArray(saved.items)) {
+    for (const { input, name } of bookingInputs) {
+      const match = saved.items.find((item) => item.name === name);
+      input.value = match ? String(match.qty) : "0";
+    }
+  }
+}
+
 updateSummary();
+
+// "Book these adventures": check the quantities, then go to the form.
+document.querySelector("#book-button").addEventListener("click", () => {
+  updateSummary();
+
+  const firstInvalid = bookingInputs.find(
+    ({ input }) => input.getAttribute("aria-invalid") === "true",
+  );
+  if (firstInvalid) {
+    firstInvalid.input.focus();
+    return;
+  }
+
+  const items = bookingInputs
+    .map(({ input, name, price }) => ({
+      name,
+      price,
+      qty: Number(input.value.trim() || 0),
+    }))
+    .filter((item) => item.qty > 0);
+
+  if (items.length === 0) {
+    calculatorError.hidden = false;
+    calculatorError.textContent =
+      "Choose at least one adventure above before booking.";
+    bookingInputs[0].input.focus();
+    return;
+  }
+
+  saveBooking(items);
+  const single = items.length === 1 && items[0].qty === 1;
+  window.location.href = single
+    ? `contact.html?activity=${encodeURIComponent(items[0].name)}`
+    : "contact.html?booking=calculator";
+});
